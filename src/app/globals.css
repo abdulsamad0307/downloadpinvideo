@@ -2,25 +2,78 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
+  --accent-pink: #e60023;
+  --accent-pink-dark: #cc001f;
+  --accent-purple: #7c3aed;
+  --accent-green: #10b981;
+  --accent-blue: #38bdf8;
+  --accent-orange: #f97316;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-pink-dark: var(--accent-pink-dark);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-green: var(--accent-green);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-orange: var(--accent-orange);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+
+  background-image:
+    radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      rgba(230, 0, 35, 0.035),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 100% 0%,
+      rgba(124, 58, 237, 0.025),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 50% 30% at 0% 100%,
+      rgba(56, 189, 248, 0.025),
+      transparent
+    );
+
+  min-height: 100vh;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Show hand cursor on clickable elements */
+button,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+  cursor: pointer;
+}
+
+/* Disabled controls should not look clickable */
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
 }
