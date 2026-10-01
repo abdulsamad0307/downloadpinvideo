@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import Header from "@/components/Header";
-
 import ExtensionDownloader from "./ExtensionDownloader";
 
 export const metadata: Metadata = {
@@ -32,7 +32,15 @@ export default function ExtensionDownloadPage() {
             </p>
           </div>
 
-          <ExtensionDownloader />
+          <Suspense
+            fallback={
+              <div className="text-sm text-slate-500">
+                Preparing your download...
+              </div>
+            }
+          >
+            <ExtensionDownloader />
+          </Suspense>
         </section>
       </main>
     </>
